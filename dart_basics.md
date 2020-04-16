@@ -348,6 +348,9 @@ class Bar extends Foo
 
 The child class will inherit all of the members of the parent class.
 
+You can override parent methods by simply declaring a method with the exact same name, return type and parameters.
+When you do this, you might want to add `@override` to the start of your function to annotate to the static analyzer that you're trying to override something. Your code will then refuse to compile if you suddenly change the parent class' function name/parameter/return type, instead of silently giving you the wrong behavior.
+
 
 ### Generics
 
@@ -418,12 +421,12 @@ As with C# and a plethora of other object-oriented languages, static members are
 
 ### Extensions
 
-Sometimes, some library you're using, or just a built-in type, won't have a method you'd really like to have. This is where extensions come in. Extensions have fairly intuitive syntax. Let's make a small extension that'll let us take the 
+Sometimes, some library you're using, or just a built-in type, won't have a method you'd really like to have. This is where extensions come in. Extensions have fairly intuitive syntax. Let's make a small extension that'll let us get a single string from a list of strings while separating each element with a comma. 
 
 ```dart
 extension StringListExtension on List<String>
 {
-  String getCommaSeparatedList() {
+  String get commaSeparatedList {
     //this is certainly a mouthful. We'll cover this kind of function call later, for now don't worry about it.
     reduce((value, element){ 
       if(value.isEmpty) { 
@@ -437,6 +440,15 @@ extension StringListExtension on List<String>
 
 ```
 
+We can then use this extension like so :
+
+```dart
+
+var menuItems = <String>['Caviar', 'Camembert', 'Foie gras', 'Duck confit'];
+//menuItemsString will be one String with value 'Caviar, Camembert, Foie gras, Duck confit'
+var menuItemsString = menuItems.commaSeparatedList;
+
+```
 
 For more information on classes, check [this link](https://www.tutorialspoint.com/dart_programming/dart_programming_classes.htm).
 
