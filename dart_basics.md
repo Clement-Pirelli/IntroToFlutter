@@ -93,7 +93,7 @@ var c = 0;
 
 Good news, control flow in dart is the same as in C, C++, C#, Java and a myriad of other languages. `while`, `if`, `for`, `switch`, the ternary operator, they're all there. That's it, really.
 
-Note that dart features a bunch of nice shorthands called null-aware operators. `var foo = x ?? y`, for example, is the equivalent of writing `var foo = (x != null) x : y`. There are quite a few of them and although they're not crucial, they make code much easier to read. More information on null-aware operators can be found [here](https://medium.com/@thinkdigitalsoftware/null-aware-operators-in-dart-53ffb8ae80bb).
+Note that dart features a bunch of nice shorthands called null-aware operators. `var foo = x ?? y`, for example, is the equivalent of writing `var foo = (x != null) ? x : y`. There are quite a few of them and although they're not crucial, they make code much easier to read. More information on null-aware operators can be found [here](https://medium.com/@thinkdigitalsoftware/null-aware-operators-in-dart-53ffb8ae80bb).
 
 ## Functions
 
