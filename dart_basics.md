@@ -53,15 +53,24 @@ Immutability in dart comes in two flavours :
 - `const` specifies the variable as a compile-time constant : 
   ```dart
   const int a = 5;
-  a++; //compiler error! Trying to change a const variable!
+  
+  //compiler error! Trying to change a const variable!
+  a++; 
+  
   int b = 42;
-  const int c = b; //error : const variables can only be assigned compile-time constants
+  
+  //error : const variables can only be assigned compile-time constants
+  const int c = b; 
   ```
 - `final` specifies the variable as a run-time constant, that is to say, its value can only be assigned when it is created :
   ```dart
   int a = 42;
-  final int b = a; //all is well
-  c++; //compiler error! Trying to change a final variable after its instantiation!
+  
+  //all is well
+  final int b = a; 
+  
+  //compiler error! Trying to change a final variable after its instantiation!
+  c++; 
   ```
 
 ### Type inference
@@ -70,15 +79,21 @@ The keyword `var` can be used to let the dart compiler guess what the type of a 
 
 ```dart
 String a = 'Hello world!';
-var b = a; //type of b will be string
-var c = 0; //type of c will be int
+
+//type of b will be string
+var b = a; 
+
+//type of c will be int
+var c = 0; 
 ```
 
 `var` is a double-edged sword : you'll get shorter, more flexible code, but it might sometimes be less readable.
 
 ### Control flow
 
-Good news, control flow in dart is the same as in C, C++, C#, Java and a myriad of other languages. `while`, `if`, `for`, `switch`, they're all there. That's it, really.
+Good news, control flow in dart is the same as in C, C++, C#, Java and a myriad of other languages. `while`, `if`, `for`, `switch`, the ternary operator, they're all there. That's it, really.
+
+Note that dart features a bunch of nice shorthands called null-aware operators. `var foo = x ?? y`, for example, is the equivalent of writing `var foo = (x != null) x : y`. There are quite a few of them and although they're not crucial, they make code much easier to read. More information on null-aware operators can be found [here](https://medium.com/@thinkdigitalsoftware/null-aware-operators-in-dart-53ffb8ae80bb).
 
 ## Functions
 
@@ -87,7 +102,14 @@ Good news, control flow in dart is the same as in C, C++, C#, Java and a myriad 
 Defining and calling functions also follows C#'s syntax, in most ways :
 
 ```dart
-bool Foo(double bar, double boz){ return bar < boz; } //a function taking one floating-point parameter, returning a boolean
+//a function taking one floating-point parameter, returning a boolean
+bool Foo(double bar, double boz){ return bar < boz; } 
+```
+Note that, just like in C#, you may use `=>` if you simply wish to return one statement, like so :
+
+```dart
+//does exactly the same thing as the previous function
+bool Foo(double bar, double boz) => bar < boz; 
 ```
 
 ### Positional vs. named parameters
@@ -278,7 +300,7 @@ class StoredInt
   
   void _loadValueFromPath(){ /*actually save the int from disk here*/ }
   void _saveValueAtPath(){ /*actually save the int to disk here*/ }
-  int get value{ return value; }
+  int get value{ return _value; }
   set value(int givenValue) { _value = givenValue; _saveValueAtPath(); }
   
   StoredInt(String path){ path = _path; _loadValueFromPath(); }
@@ -394,7 +416,26 @@ Foo.bar = 5;
 
 As with C# and a plethora of other object-oriented languages, static members are tied to the class, not to any instance. 
 
+### Extensions
 
+Sometimes, some library you're using, or just a built-in type, won't have a method you'd really like to have. This is where extensions come in. Extensions have fairly intuitive syntax. Let's make a small extension that'll let us take the 
+
+```dart
+extension StringListExtension on List<String>
+{
+  String getCommaSeparatedList() {
+    //this is certainly a mouthful. We'll cover this kind of function call later, for now don't worry about it.
+    reduce((value, element){ 
+      if(value.isEmpty) { 
+        value += element; 
+      } else { 
+        value += ', ' + element; 
+      } 
+      return value;});
+  }
+}
+
+```
 
 
 For more information on classes, check [this link](https://www.tutorialspoint.com/dart_programming/dart_programming_classes.htm).
@@ -402,11 +443,11 @@ For more information on classes, check [this link](https://www.tutorialspoint.co
 
 ## Containers
 
-Let's face it, our `Quintuple` class is terrible. `first`, `second`, `third`, really? How do we put that in a `for` loop, even? We'd have to execute the same code on every single item, just like we did with the `/` operator, and honestly I know I get paid per hour but having to do that is just not fun, not productive, and overall just not a good time. 
+Let's face it, the `Quintuple` class above is terrible. `first`, `second`, `third`, really? How do we put that in a `for` loop, even? We'd have to execute the same code on every single item, just like we did with the `/` operator, and honestly I know I get paid per hour but having to do that is just not fun, not productive, and overall just not a good time. That's where containers step in. There's a bunch of them, but I'll only go into two of them for now.
 
 ### List
 
-Luckily, `List` is here to help.
+In this case, `List` is here to help.
 The `List` class is a generic container which can either be fixed or growable.
 We can use it to replace our horrible `Quintuple`'s items by a 5-length list, like so :
 
@@ -441,4 +482,4 @@ var myMap = <String, int>{'Hello World': 42, 'The funny number' : 1337};
 
 ## Wrapping up
 
-I know this is a lot to take in. It's fine if you don't remember most of the syntax. [Next chapter](dart_percentage.md), we'll be writing a small class bit by bit to cement your knowledge a little bit.
+I know this is a lot to take in. It's fine if you don't remember most of the syntax. [Next chapter](dart_percentage.md), we'll be writing a small class bit by bit to cement your knowledge a little bit. See you there!
