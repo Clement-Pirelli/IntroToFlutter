@@ -31,12 +31,12 @@ int a; //null
 int b = null; //also null :P
 ```
 
-`int` and `bool` are actually both classes (more or classes later) inheriting from the class `num`, which represents numbers.
+`int` and `bool` are actually both classes (more on classes later) inheriting from the class `num`, which represents numbers.
 
 ### Dynamic
 
 You might encounter code which returns/takes a value of type `dynamic`.
-`dynamic` is Dart's way of saying "You won't know until you try". `dynamic` variables could be of any type. Trying to cast a dynamic to the wrong type will generate a runtime error:
+`dynamic` is Dart's way of saying "You won't know until you try". `dynamic` variables could be of any type. Trying to cast a `dynamic` to the wrong type will generate a runtime error :
 
 ```dart
 int a = 42;
@@ -84,7 +84,7 @@ Good news, control flow in dart is the same as in C, C++, C#, Java and a myriad 
 
 ### Defining a function
 
-Defining and calling functions also follows C#'s syntax, in most ways:
+Defining and calling functions also follows C#'s syntax, in most ways :
 
 ```dart
 bool Foo(double bar, double boz){ return bar < boz; } //a function taking one floating-point parameter, returning a boolean
@@ -94,9 +94,9 @@ bool Foo(double bar, double boz){ return bar < boz; } //a function taking one fl
 
 In dart, parameters can be positional or named.
 - A positional parameter must be supplied according to its position in the parameters of a function, like in the function above.
-  Another way of declaring a positional parameter is through the `[variable]` syntax, like so:
+  Another way of declaring a positional parameter is through the `[variable]` syntax, like so :
   ```dart
-  void FooB([double bar, double boz]){ return bar < boz; }
+  bool FooB([double bar, double boz]){ return bar < boz; }
   ```
 
 - A named argument is declared using the `{variable}` syntax. It must be supplied according to its name, like so :
@@ -136,7 +136,7 @@ For more information on optional parameters, check [this link](https://zaiste.ne
 
 Writing your entire program in `main.dart` gets tiring after a while.
 Creating one file per task you're trying to tackle is usually recommended.
-To import a file into another file, you simply write `import 'my/files/path/here';`. This will make it so the importing file can use the code in the imported file:
+To import a file into another file, you simply write `import 'my/files/path/here';`. This will make it so the importing file can use the code in the imported file :
 
 ```dart
 //in Login.dart 
@@ -242,6 +242,65 @@ B myB = B(10);
 
 Note : it used to be that you'd have to use `new` just like in C# but again, generous gods.
 
+### Getters and setters
+
+Getters and setters are a pretty nice quality of life addition to the language. For example, one might want to make a small class which calculates a price with VAT and some charges. Getters make everything much more straightforward :
+
+```dart 
+class Payment
+{
+  final double _VATPercentage;
+  final double _initialPrice;
+  final double _charges;
+  Payment(this._initialPrice, this._VATPercentage, this._charges);
+  
+  double get VATPart { return _initialPrice * _VATPercentage/100.0; }
+  double get finalPrice { return _initialPrice + VATPart + _charges; }
+}
+
+//somewhere else
+
+var payment = Payment(200.0, 12.0, 5.0); //here we can see also the point of named parameters
+var finalPrice = payment.finalPrice;
+payment.finalPrice++; //compiler error! a getter isn't something you can set!
+
+```
+
+As you can see, this is essentially a shorthand for a function which takes no arguments.
+
+A setter on the other hand is a shorthand for a function which returns nothing and sets a variable :
+
+```dart
+class StoredInt
+{
+  int _value;
+  final String _path;
+  
+  void _loadValueFromPath(){ /*actually save the int from disk here*/ }
+  void _saveValueAtPath(){ /*actually save the int to disk here*/ }
+  int get value{ return value; }
+  set value(int givenValue) { _value = givenValue; _saveValueAtPath(); }
+  
+  StoredInt(String path){ path = _path; _loadValueFromPath(); }
+}
+
+var mySavedInt = StoredInt("my/path/here.txt");
+var value = mySavedInt.value; //gets the loaded value
+mySavedInt = 24; //saves the value to disk
+```
+
+As you can see this is useful for providing easy, intuitive classes. 
+What getters and setters aren't useful for is this kind of stuff :
+
+```
+class Foo{
+  int _bar;
+  int get bar { return _bar; }
+  set bar(int givenBar) { _bar = givenBar; }
+}
+```
+
+I would advise not doing this, since it just doesn't do anything making the variable visible wouldn't.
 
 ### Private members?
 
@@ -305,7 +364,7 @@ class Quintuple<Type extends num>{
 
 In dart, operators on a type (`+`, `-`, `/`, `==`, `[]`) can be overloaded. 
 For our previous example, the `Quintuple`, we might want to be able to divide every element by the same number.
-The special function name `operator`, followed by the symbol of the operator you wish to overload, can be used:
+The special function name `operator`, followed by the symbol of the operator you wish to overload, can be used :
 
 ```dart
 class Quintuple<Type extends num>{
@@ -377,5 +436,9 @@ This is extremely useful when you need to be able to look up an element of some 
 As with lists, maps can be instantiated using a special notation :
 
 ```
-var myMap = <String, int>{'Hello World': 42, 'The funny word' : 1337};
+var myMap = <String, int>{'Hello World': 42, 'The funny number' : 1337};
 ```
+
+## Wrapping up
+
+I know this is a lot to take in. It's fine if you don't remember most of the syntax. [Next chapter](dart_percentage.md), we'll be writing a small class bit by bit to cement your knowledge a little bit.
