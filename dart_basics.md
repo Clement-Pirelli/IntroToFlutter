@@ -31,7 +31,7 @@ int a; //null
 int b = null; //also null :P
 ```
 
-`int` and `bool` are actually both classes (more on classes later) inheriting from the class `num`, which represents numbers.
+`int` and `double` are actually both classes (more on classes later) inheriting from the class `num`, which represents numbers.
 
 ### Dynamic
 
