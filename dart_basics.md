@@ -247,8 +247,18 @@ class Foo{
   const Foo(this.bar, this.gombo);
 }
 ```
-
 One may then declare a `const Foo f = const Foo(0, 2);`.
+
+
+Remember, constructors, just like other functions, can take optional and named parameters as well. Constructors with more than ten optional named parameters are a common sight in flutter and in FarmUp's codebase. For example, here's a snippet instantiating an object of the class `CallToActionButton` :
+
+```dart
+CallToActionButton(
+  backgroundColor: Theme.of(context).secondaryHeaderColor,
+  onPressed: onButtonPressed,
+  titleString: Localization.get('_seeOrders'),
+)
+```
 
 For more information on constructors, check [this link](https://dart.dev/guides/language/language-tour#constructors) 
 
