@@ -181,11 +181,15 @@ Note that for `Map`, `forEach` will iterate over every key's value :
 var dictionary = <String, int>{'b' : 1, 'n' : 42};
 dictionary.forEach((key, value)=> print(key + ' : ' + value.toString());
 ```
-This will output b : 1 n : 42 
+This will output :
+```
+b : 1 
+n : 42
+```
 
 ### map
 
-Not to be confused with `Map`, `map` is another algorithm which takes a function. It essentially maps every element in a container with an element in a returned container through the provided function, like so :
+Not to be confused with the `Map` container, `map` is another algorithm which takes a function. It essentially maps every element in a container with an element in a returned container through the provided function, like so :
 
 ```dart
 var ints = <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -197,6 +201,51 @@ To convert it to a `List<int>`, you can simply write `doubledInts.toList()`.
 
 ### reduce
 
-## Futures
-## async/await
+`reduce` takes a list of elements and outputs a single value according to a user provided function, like so :
+
+```
+var ints = <int>[ 1, 2, 3, 4,5 ,6];
+var sum = ints.reduce((value, element) => value + element);
+``` 
+
+Not exactly rocket science, but extremely useful and concise.
+
+There are way more built-in algorithms, and you can even make new ones using extension methods. Most of them are even simpler than reduce, all of them can be used to shorten and clarify code. Just make sure you don't have extremely long chains of algorithms and that you indent them properly if they're longer than just one expression.
+
+## Asynchronous programming
+
+It's very common to have to wait for something to arrive/finish/return. Think of asking a database for a user's picture, or waiting for an alert message to be okayed by the user, for example.
+When such a scenario comes up, it would be madness to simply have a `while` loop check if the operation is finished every tick. This is wasteful in terms of battery usage and blocks the current thread.
+
+Instead, dart provides a number of easy to use keywords and classes to help us wait for things to happen. All of this while not depleting our user's battery and being able to perform other work on the same thread. 
+
+When calling an asynchronous function, its return value will either be stored in a `Future` or a `Stream`.
+
+### Futures
+
+`Future<T>` is a generic class which encapsulate a value which may be returned **once** in the future. 
+Every `Future` has a callback which will be called if the value is returned. This callback can be set using the `then` function, like so :
+
+```
+Future<String> helloFuture() 
+{
+	return Future<String>.delayed(
+		Duration(seconds:2), //2 seconds later 
+		()=> "Hello future!" //returns this 
+	);
+}
+
+helloFuture().then((value) => print(value)); //print the value when it is returned
+```
+
+### async/await
+
+The `async` keyword on a function denotes that it is asynchronous and may therefore `await` Futures, as well as returns a Future.
+
+
+
+
+
+
+
 ## The `mixin` keyword
