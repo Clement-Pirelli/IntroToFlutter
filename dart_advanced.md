@@ -203,7 +203,7 @@ To convert it to a `List<int>`, you can simply write `doubledInts.toList()`.
 
 `reduce` takes a list of elements and outputs a single value according to a user provided function, like so :
 
-```
+```dart
 var ints = <int>[ 1, 2, 3, 4,5 ,6];
 var sum = ints.reduce((value, element) => value + element);
 ``` 
@@ -226,7 +226,7 @@ When calling an asynchronous function, its return value will either be stored in
 `Future<T>` is a generic class which encapsulate a value which may be returned **once** in the future. 
 Every `Future` has a callback which will be called if the value is returned. This callback can be set using the `then` function, like so :
 
-```
+```dart
 Future<String> helloFuture() 
 {
 	return Future<String>.delayed(
@@ -241,11 +241,36 @@ helloFuture().then((value) => print(value)); //print the value when it is return
 ### async/await
 
 The `async` keyword on a function denotes that it is asynchronous and may therefore `await` Futures, as well as returns a Future.
+`await` pauses the `async` function until the future it is denoting returns, without blocking the thread.
+For example, we could rewrite the snippet above as : 
+
+```dart
+Future<String> helloFuture() async //notice the "async"!
+{ 
+	await Future.delayed(Duration(seconds:2));
+	return "Hello future!";
+}
+
+helloFuture().then((value) => print(value));
+```
+
+Since the delayed future is awaited, "Hello future!" will only be returned after the delayed future returns (2 seconds after the function call).
+
+**An important note : never use `Future.then` in an async function!** Otherwise, you get something like :
+
+```dart
+Future<void> OneTwo() async
+{
+	Future.delayed(Duration(seconds: 1000)).then(()=> print("1"));
+	await Future.delayed(Duration(seconds:1));
+	print("2");
+}
+
+//output : 2, 1
+```
+As you can see, even though we're in an async call, `then` cannot be awaited, so it'll just wait 1000 seconds while the rest of the function goes on its merry way.
 
 
 
 
-
-
-
-## The `mixin` keyword
+And that's about it for advanced features of dart! There is much more of course, but this is the stuff you kind of *need* to know. Next time, we'll be taking a shallow look into what Flutter has to offer and how it works.
