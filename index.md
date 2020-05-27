@@ -6,3 +6,4 @@ This introductory series to flutter assumes you already have a background in pro
 
 - [Making a small class : Percentage](dart_percentage.md)
 
+- [Advanced dart](dart_advanced.md)
