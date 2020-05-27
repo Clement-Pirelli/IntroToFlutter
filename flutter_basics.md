@@ -47,4 +47,32 @@ You might've also noticed that every `build` method has a `BuildContext` as a pa
 var theme = Theme.of(context);
 ```
 
-##
+## Basic widgets
+
+Flutter features a [ginormous amount of widgets](https://api.flutter.dev/flutter/widgets/widgets-library.html). Most of them have extremely specific uses though, so 20% of the widgets will do 80% of the work, pretty much. 
+
+### Container
+
+`Container` is probably the most basic of all widgets. It's a box to which you can give a width, a height or constraints. You can also give it a child widget and a decoration (for example, a background image, or rounded corners) :
+
+```dart
+Container(
+  child: Text("Hello World!"),
+  color: Colors.blue
+);
+```
+
+You can also give a Container `padding` or a `margin` :
+
+
+```dart
+Container(
+  padding: EdgeInsets.all(2.0),
+  margin: EdgeInsets.all(5.0)
+);
+```
+
+We'll get to padding in a little bit. Essentially, `padding` is applied to the inside of the container while `margin` is applied to the outside, like so :
+
+![Padding vs Margin](https://flutter.dev/assets/ui/layout/margin-padding-border-9616dd0d7af45b95e6fcface25cd933b6b4a0fda51c1ab1bb9287bc8ed92c356.png)
+ 
