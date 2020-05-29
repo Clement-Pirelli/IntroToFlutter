@@ -7,5 +7,5 @@
 We'll be making a simple ToDo app using basic flutter widgets. This will hopefully acquaint us with the flutter way of building apps.
 
 The app will have two screens, the "list" screen and the "new todo" screen.
-In the "list" screen, the user will be able to scroll through their todos as well as swipe on a todo to dismiss it.
-In the "new todo" screen, the user will be able to input some text for a new todo.
+* In the "list" screen, the user will be able to scroll through their todos as well as swipe on a todo to dismiss it.
+* In the "new todo" screen, the user will be able to input some text for a new todo.
