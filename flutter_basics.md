@@ -137,7 +137,7 @@ Text("Hello World!",
 )
 ```
 
-## Row and Column
+### Row and Column
 
 So far we've only seen widgets which take a single widget, but there are very few apps which can be built using a single chain of widgets. `Row` and `Column` both accept a `List<Widget>` as their `children`.
 
@@ -185,7 +185,7 @@ This works fine for a few elements, but if we had ten thousand, it would iterate
 
 [OverflowExample]()
 
-## ListView
+### ListView
 
 To combat the thousands of elements overflowing, `ListView` can be used to render widgets in a scrollable list :
 
@@ -214,5 +214,8 @@ ListView.builder(
 This way, the builder for a widget will only be called when the user scrolls to that widget.
 
 
-There are many other layout widgets, such as `Stack`, `GridView` and `ListTile`. For more information on these and more, you can take a look at [this post](https://flutter.dev/docs/development/ui/layout) from the official flutter documentation.
+There are many other layout widgets, such as `Stack`, `GridView` and `ListTile`. For more information on these and more, you can take a look at [this post](https://flutter.dev/docs/development/ui/layout) from the official flutter documentation. Overall, flutter's documentation is excellent, so do refer to it if you encounter any problems.
 
+## Wrapping up
+
+Next time, we'll be building a real app to hone our flutter skills. Before that, I recommend you read at least the start of the book ["Flutter in Action"](https://www.manning.com/books/flutter-in-action), which goes way more in depth about how flutter works internally, as well as mess around a bit on your own.
