@@ -217,6 +217,51 @@ There are many other layout widgets, such as `Stack`, `GridView` and `ListTile`.
 
 There's also the ["Flutter widget of the week"](https://www.youtube.com/watch?v=_rnZaagadyo) series, which explains one widget per video with intuitive graphics.
 
+## Navigation
+
+So far we've only been talking about widgets and their layout. But what about moving from one part of an app to another? You could have a big `switch` statement deciding which parent widget is chosen, but what happens when the user presses the back button?
+
+Here flutter brings forth the `Navigator` class. `Navigator` takes care of all of the bookkeeping for us and only exposes a simple set of functions for us to use to move from one screen to another using "routes". A route is essentially a wrapper around a part of the app which we can ask the `Navigator` to push or pop from a stack of routes.
+
+There are two types of routes : static or dynamic. 
+
+Static routes need to be declared from get-go in the `MaterialApp` constructor, like so :
+
+```dart
+MaterialApp(
+  initialRoute: '/',
+  routes: {
+    //static routes are identified by their name ('/' in this case)
+    '/': (context) => SomeWidget(), 
+    '/other': (context) => SomeOtherWidget(),
+  },
+);
+```
+
+This works fine if you have very few routes, but it quickly gets very tiring to have to add static routes every time you add a new screen to your app. Dynamic routes solve this problem :
+
+```dart
+//the second route in the example above
+var route = MaterialPageRoute(
+  settings: RouteSettings(name: '/other'),
+  builder: (context) {
+    return SomeOtherWidget();
+  },
+);
+```
+
+Now that you have a route (be it static or dynamic) you can for example push a route on the press of a button :
+
+```dart
+FlatButton(
+  onPressed: (staticRouting) ?
+  //for a static route
+  () => Navigator.pushNamed(context, '/other') :
+  //for a dynamic route
+  () => Navigator.push(context, route)
+);
+```
+
 ## Wrapping up
 
 Next time, we'll be building a real app to hone our flutter skills. Before that, I recommend you read at least the start of the book ["Flutter in Action"](https://www.manning.com/books/flutter-in-action), which goes way more in depth about how flutter works internally, as well as mess around a bit on your own.
