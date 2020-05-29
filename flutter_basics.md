@@ -55,7 +55,7 @@ Do also note that this is only an overview of your options. If you wish to know 
 
 If that doesn't suffice (IDEA likes to hide the type of the parameters for example, which drives me crazy), you can click on the function name and press `Ctrl+Q`to see the whole function, where it comes from, and if you're lucky, a small explanation of its purpose.
 
-[CtrlQExample]()
+![Pressing Ctrl+Q](assets/CtrlQExample.png)
 
 ### Container
 
@@ -70,7 +70,7 @@ Container(
 );
 ```
 
-[ContainerExample]()
+![Result of the code](assets/ContainerExample.png)
 
 ### Padding
 
@@ -151,7 +151,7 @@ Row(
 )
 ```
 
-[RowExample]()
+![Result of the code](assets/RowExample.png)
 
 `mainAxisAlignment` decides the alignment of the children along the axis of the widget (horizontal for `Row`, vertical for `Column`).
 You can also specify the `crossAxisAlignment`, which is the alignment along the other axis.
@@ -177,13 +177,13 @@ Column(
 
 ```
 
-[ColumnExample]()
+![Result of the code](assets/ColumnExample.png)
   
 Remember that `map` returns an iterable based on the elements of a list. Here, we have a list of events based on which we create `Text` widgets. 
 
 This works fine for a few elements, but if we had ten thousand, it would iterate over and try to display all of them. It'd take a lot of time on rebuilds and you'd get an overflow error as widgets are rendered outside of the screen :
 
-[OverflowExample]()
+![Example of overflow](assets/OverflowExample.png)
 
 ### ListView
 
