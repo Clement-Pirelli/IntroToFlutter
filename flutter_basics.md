@@ -213,8 +213,9 @@ ListView.builder(
 
 This way, the builder for a widget will only be called when the user scrolls to that widget.
 
-
 There are many other layout widgets, such as `Stack`, `GridView` and `ListTile`. For more information on these and more, you can take a look at [this post](https://flutter.dev/docs/development/ui/layout) from the official flutter documentation. Overall, flutter's documentation is excellent, so do refer to it if you encounter any problems.
+
+There's also the ["Flutter widget of the week"](https://www.youtube.com/watch?v=_rnZaagadyo) series, which explains one widget per video with intuitive graphics.
 
 ## Wrapping up
 
