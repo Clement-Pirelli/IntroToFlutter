@@ -88,7 +88,7 @@ Container(
 )
 ```
 
-![PaddingExample here]()
+![PaddingExample](assets/PaddingExample.png)
 
 `EdgeInsets` describes how padding is to be applied :
 * `all` lays out the same specified amount of padding around the child widget. 
@@ -136,6 +136,27 @@ Text("Hello World!",
   style: Theme.of(context).primaryTextTheme.subtitle2
 )
 ```
+
+This is much nicer if you wish to implement something like a night mode. Simply update the `Theme` of your app and every `Text` using it will change without the code getting more complicated for that change.
+
+### Buttons
+
+There are a few types of built-in Material buttons in flutter. One of the simplest is `FlatButton`, which displays a button with no shadows. Buttons share the same basic functionality below, so we'll be focusing on `FlatButton` for now.
+
+`FlatButton` can be given an `onPressed` callback. This callback will be called every time the button is pressed. This means you should be wary with `async` callbacks as they could be triggered more than once.
+Button callbacks can be `null`. If every callback is, the button will be disabled and will display its `disabled` attributes (such as `disabledTextColor`, `disabledColor`, etc).
+
+`FlatButton` can be given a child `Widget`. Buttons take the size of their child :
+
+```dart
+FlatButton(
+  child: Container(width: 100, height: 200),
+  color: Colors.red,
+  onPressed: () => print('Hello world!'),
+)
+```
+
+I recommend you try this one yourself, as a picture doesn't do the satisfying "ripple" effect justice.
 
 ### Row and Column
 
