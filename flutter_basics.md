@@ -51,8 +51,6 @@ All of the widgets I showcase here are wrapped in a `SafeArea`, which keeps the 
 
 Do also note that this is only an overview of your options. If you wish to know more about a specific widget, a short google search should land you on the Flutter documentation page for that widget where you can find a detailed explanation for all of its properties. In IDEA, you can also press `Ctrl+P` when your cursor is inside a function call (in our case, a constructor) to see all of the parameters of the function.
 
-<CtrlPExample here>
-
 If that doesn't suffice (IDEA likes to hide the type of the parameters for example, which drives me crazy), you can click on the function name and press `Ctrl+Q`to see the whole function, where it comes from, and if you're lucky, a small explanation of its purpose.
 
 ![Pressing Ctrl+Q](assets/CtrlQExample.png)
