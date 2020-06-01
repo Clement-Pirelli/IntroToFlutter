@@ -318,7 +318,7 @@ class StoredInt
 
 var mySavedInt = StoredInt("my/path/here.txt");
 var value = mySavedInt.value; //gets the loaded value
-mySavedInt = 24; //saves the value to disk
+mySavedInt.value = 24; //saves the value to disk
 ```
 
 As you can see this is useful for providing easy, intuitive classes. 
