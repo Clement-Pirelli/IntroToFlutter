@@ -73,3 +73,8 @@ FlatButton(
 ```
 
 ## Business Logic
+
+Business logic is anything that isn't related to the "presentation layer", aka showing data to the user. This includes interacting with a database, writing to files, calculating prices, etc.
+Business logic being embedded into your presentation layer is a bad idea. This is because it breaks the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) as well as the [single-responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) : your logic should be contained in one place tasked only with handling this logic, while your presentation layer should only tackle the challenges of showing things to the user.
+
+Business logic should therefore be separated, and what better way to do so than through a `Provider`!
