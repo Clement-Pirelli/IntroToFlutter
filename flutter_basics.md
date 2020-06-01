@@ -283,4 +283,4 @@ FlatButton(
 
 ## Wrapping up
 
-Next time, we'll be talking about some advanced features of flutter you'll need to know about before you start writing code in a real codebase. Before that, I recommend you read at least the start of the book ["Flutter in Action"](https://www.manning.com/books/flutter-in-action), which goes way more in depth about how flutter works internally, as well as mess around a bit on your own.
+[Next time](flutter_advanced.md), we'll be talking about some advanced features of flutter you'll need to know about before you start writing code in a real codebase. Before that, I recommend you read at least the start of the book ["Flutter in Action"](https://www.manning.com/books/flutter-in-action), which goes way more in depth about how flutter works internally, as well as mess around a bit on your own.
