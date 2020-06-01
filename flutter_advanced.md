@@ -11,6 +11,8 @@ class Localization
 {
   Map<String, String> _data; //key-value pairs
   
+  Localization(String path) => load(path); //load on create
+  
   void load(String path) {
     data = loadDataAt(path);
   }
@@ -42,10 +44,32 @@ class Localization extends ChangeNotifier
 }
 ```
 
-Next, we need to place this class in the widget tree so that we can access it through the `BuildContext` :
+Next, we need to place this class in the widget tree so that we can access it through the `BuildContext`. The provider package includes a generic class called `ChangeNotifierProvider`, which we should place above the rest of our app in the widget tree :
 
+```dart
+class Application extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<Localization>(
+      create: (context) => Localization('assets/english.json'),
+      child: MaterialApp(/*your app here*/)
+    );
+  }
+}
 ```
 
+We can now call access the `Localization` instance we created by calling `Provider.of<Localization>(context)`. This will also automatically register the calling widget as a listener to be notified (and therefore rebuilt) whenever `Localization` calls `notifyListener`, in our case during `load` :
+
+```dart
+Text(Provider.of<Localization>(context).get('_helloWorld')); //will be rebuilt on Localization's notifyListener
+```
+
+So now our button can both access the localization instance easily, and load another localization file without the rest of the app needing to check if they need to rebuild all the time :
+
+```dart
+FlatButton(
+  onPressed: () => Provider.of<Localization>(context).load('assets/swedish.json')
+);
 ```
 
 ## Business Logic
