@@ -133,8 +133,7 @@ I've made this example extremely simple, and yet we can already see that this co
 
 By adding business logic separation, we end up with something like :
 
-```
-
+```dart
 class Boxes extends ChangeNotifier{
   var _list = <Box>[];
   
