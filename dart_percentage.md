@@ -75,4 +75,4 @@ class Percentage {
 
 Nice!
 
-We've now achieved what we wanted to! I hope you now have a bit of a more grounded knowledge the dart features you'll be most likely to be using. In the next page, things will get more interesting as we start delving into flutter itself! 
+We've now achieved what we wanted to! I hope you now have a bit of a more grounded knowledge the dart features you'll be most likely to be using. In [the next page](dart_advanced.md), we'll go deeper into dart and its more advanced features! 
