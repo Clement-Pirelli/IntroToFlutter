@@ -273,4 +273,4 @@ As you can see, even though we're in an async call, `then` cannot be awaited, so
 
 
 
-And that's about it for advanced features of dart! There is much more of course, but this is the stuff you kind of *need* to know. [Next time](flutter_basics.md), we'll be taking a shallow look into what Flutter has to offer and how it works.
+And that's about it for advanced features of dart! There is much more of course, but this is the stuff you kind of *need* to know. [Next time](flutter_basics.md), we'll be taking a basic look into what Flutter has to offer and how it works.
