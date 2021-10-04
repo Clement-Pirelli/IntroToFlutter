@@ -93,7 +93,7 @@ var c = 0;
 
 Good news, control flow in dart is the same as in C, C++, C#, Java and a myriad of other languages. `while`, `if`, `for`, `switch`, the ternary operator, they're all there. That's it, really.
 
-Note that dart features a bunch of nice shorthands called null-aware operators. `var foo = x ?? y`, for example, is the equivalent of writing `var foo = (x != null) ? x : y`. There are quite a few of them and although they're not crucial, they make code much easier to read. More information on null-aware operators can be found [here](https://medium.com/@thinkdigitalsoftware/null-aware-operators-in-dart-53ffb8ae80bb).
+Note that, akin to C#, dart features a bunch of nice shorthands called null-aware operators. `var foo = x ?? y`, for example, is the equivalent of writing `var foo = (x != null) ? x : y`. There are quite a few of them and although they're not crucial, they make code much easier to read. More information on null-aware operators can be found [here](https://medium.com/@thinkdigitalsoftware/null-aware-operators-in-dart-53ffb8ae80bb).
 
 ## Functions
 
@@ -227,7 +227,7 @@ class B {
 
 ```
 
-As they are generous gods, dart's makers have included a really nice feature into the language, which allows the programmer to alleviate their carpal tunnel syndrome somewhat by requiring much less typing. The code below is exactly equivalent to the code above :
+Note that dart features a really nice bit of syntactical sugar. The code below is exactly equivalent to the code above :
 
 ```dart
 class B{
@@ -272,7 +272,7 @@ B myB = B(10);
 
 ```
 
-Note : it used to be that you'd have to use `new` just like in C# but again, generous gods.
+Note : it used to be that you'd have to use `new` just like in C# but this was removed as it was unneeded.
 
 ### Getters and setters
 
@@ -341,7 +341,7 @@ Dart has no concept of public/private members. The only way you can hide a membe
 
 ### Inheritance
 
-This section will be very brief because honestly, you won't need to care about inheritance too much while working with flutter.
+This section will be very brief as you won't need to care about inheritance too much while working with flutter.
 
 Declaring a child of another class is done using the keyword `extends`, like so :
 
@@ -366,7 +366,7 @@ When you do this, you might want to add `@override` to the start of your functio
 
 Imagine you want to make a class which stores five items of one type, let's call the class `Quintuple`. You want to have a `Quintuple` of ints, a `Quintuple` of Strings, etc.
 
-What you *could* do is write up a `QuintupleString` class, which holds five strings, and a `QuintupleInt` class which holds five ints, and after a lot of copy-paste and changing types you'd get what you want. But then whenever you want to change the behavior of your `Quintuple`, you have to change every copy-pasted piece of code, and after a while you just give up. Our merciful gods have provided us with an alternative however : generics.
+What you *could* do is write up a `QuintupleString` class, which holds five strings, and a `QuintupleInt` class which holds five ints, and after a lot of copy-paste and changing types you'd get what you want. But then whenever you want to change the behavior of your `Quintuple`, you have to change every copy-pasted piece of code. There is an alternative : generics.
 
 ```dart
 class Quintuple<Type>{
@@ -383,13 +383,13 @@ This will effectively automatically create a copy-paste where `Type` is replaced
 
 Now you can create a `Quintuple` of `int`s by simply writing : 
 ```dart
-var foo = Quintuple<int>(42, 42, 42, 42, 42)
+var foo = Quintuple<int>(42, 42, 42, 42, 42);
 ``` 
 
 If you want to restrict which "copy-pastes" can be created, for example only to numbers, you can do so with `extends`, by writing :
 
 ```dart
-class Quintuple<Type extends num>{
+class Quintuple<Type extends num> {
   //first second etc
 }
 ```
@@ -431,20 +431,13 @@ As with C# and a plethora of other object-oriented languages, static members are
 
 ### Extensions
 
-Sometimes, some library you're using, or just a built-in type, won't have a method you'd really like to have. This is where extensions come in. Extensions have fairly intuitive syntax. Let's make a small extension that'll let us get a single string from a list of strings while separating each element with a comma. 
+Sometimes, some library you're using, or just a built-in type, won't have a method you'd really like to have. This is where extensions come in. Extensions have fairly intuitive syntax. Let's make a small extension that'll let us create a four-dimensional vector representing a point in space from a three-dimensional vector, as an example:
 
 ```dart
-extension StringListExtension on List<String>
+extension Vector3DExtension on Vector3D
 {
-  String get commaSeparatedList {
-    //this is certainly a mouthful. We'll cover this kind of function call later, for now don't worry about it.
-    reduce((value, element){ 
-      if(value.isEmpty) { 
-        value += element; 
-      } else { 
-        value += ', ' + element; 
-      } 
-      return value;});
+  Vector4D get to4DPoint {
+    returrn Vector4D(x, y, z, 1.0);
   }
 }
 
@@ -454,9 +447,8 @@ We can then use this extension like so :
 
 ```dart
 
-var menuItems = <String>['Caviar', 'Camembert', 'Foie gras', 'Duck confit'];
-//menuItemsString will be one String with value 'Caviar, Camembert, Foie gras, Duck confit'
-var menuItemsString = menuItems.commaSeparatedList;
+var someVector3D = gimmeAVector3D();
+var theVectorAsPoint = someVector3D.to4DPoint;
 
 ```
 
@@ -465,13 +457,13 @@ For more information on classes, check [this link](https://www.tutorialspoint.co
 
 ## Containers
 
-Let's face it, the `Quintuple` class above is terrible. `first`, `second`, `third`, really? How do we put that in a `for` loop, even? We'd have to execute the same code on every single item, just like we did with the `/` operator, and honestly I know I get paid per hour but having to do that is just not fun, not productive, and overall just not a good time. That's where containers step in. There's a bunch of them, but I'll only go into two of them for now.
+`Quintuple` is great and all, but we can't iterate on it, That's where containers step in. There's a bunch of them, but I'll only go into two of them for now.
 
 ### List
 
 In this case, `List` is here to help.
 The `List` class is a generic container which can either be fixed or growable.
-We can use it to replace our horrible `Quintuple`'s items by a 5-length list, like so :
+We can use it to replace our `Quintuple`'s items by a 5-length list, like so :
 
 ```dart
 class Quintuple<Type>{
@@ -499,7 +491,7 @@ This is extremely useful when you need to be able to look up an element of some 
 As with lists, maps can be instantiated using a special notation :
 
 ```
-var myMap = <String, int>{'Hello World': 42, 'The funny number' : 1337};
+var myMap = <String, int>{'Hello World': 42, 'Some other key' : 1337};
 ```
 
 ## Wrapping up
