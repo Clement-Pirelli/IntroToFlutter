@@ -196,28 +196,28 @@ var ints = <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var doubledInts = ints.map((element) => element*2 );
 ```
 
-`doubledInts` will be an `Iterable<int>` (essentially, a list but not really), which will contain 0, 2, 4, 6, 8, 10 etc.
-To convert it to a `List<int>`, you can simply write `doubledInts.toList()`.
+`doubledInts` will be an `Iterable<int>` which will contain 0, 2, 4, 6, 8, 10 etc.
+To convert it to a `List<int>` when you're done transforming it, you can simply write `doubledInts.toList()`.
 
 ### reduce
 
 `reduce` takes a list of elements and outputs a single value according to a user provided function, like so :
 
 ```dart
-var ints = <int>[ 1, 2, 3, 4,5 ,6];
+var ints = <int>[ 1, 2, 3, 4, 5, 6];
 var sum = ints.reduce((value, element) => value + element);
 ``` 
 
 Not exactly rocket science, but extremely useful and concise.
 
-There are way more built-in algorithms, and you can even make new ones using extension methods. Most of them are even simpler than reduce, all of them can be used to shorten and clarify code. Just make sure you don't have extremely long chains of algorithms and that you indent them properly if they're longer than just one expression.
+There are way more built-in algorithms, and you can even make new ones using extension methods. Most of them are even simpler than reduce, all of them can be used to shorten and clarify code. Just make sure you don't have long chains of algorithms and that you indent them properly if they're longer than just one expression.
 
 ## Asynchronous programming
 
 It's very common to have to wait for something to arrive/finish/return. Think of asking a database for a user's picture, or waiting for an alert message to be okayed by the user, for example.
-When such a scenario comes up, it would be madness to simply have a `while` loop check if the operation is finished every tick. This is wasteful in terms of battery usage and blocks the current thread.
+When such a scenario comes up, "busy looping", aka having a `while` loop check if the operation is finished every tick, would be wasteful in terms of battery usage and would block the current thread.
 
-Instead, dart provides a number of easy to use keywords and classes to help us wait for things to happen. All of this while not depleting our user's battery and being able to perform other work on the same thread. 
+Instead, dart provides a number of easy to use keywords and classes to help us wait for things to happen. All of this while not depleting our user's battery and being able to perform other work on the same thread.
 
 When calling an asynchronous function, its return value will either be stored in a `Future` or a `Stream`.
 
