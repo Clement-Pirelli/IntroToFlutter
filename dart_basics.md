@@ -286,8 +286,8 @@ class Payment
   final double _charges;
   Payment(this._initialPrice, this._VATPercentage, this._charges);
   
-  double get VATPart { return _initialPrice * _VATPercentage/100.0; }
-  double get finalPrice { return _initialPrice + VATPart + _charges; }
+  double get VATPart => _initialPrice * _VATPercentage/100.0;
+  double get finalPrice => _initialPrice + VATPart + _charges;
 }
 
 //somewhere else
@@ -308,7 +308,7 @@ class StoredInt
   int _value;
   final String _path;
   
-  void _loadValueFromPath(){ /*actually save the int from disk here*/ }
+  void _loadValueFromPath(){ /*actually load the int from disk here*/ }
   void _saveValueAtPath(){ /*actually save the int to disk here*/ }
   int get value{ return _value; }
   set value(int givenValue) { _value = givenValue; _saveValueAtPath(); }
@@ -327,7 +327,7 @@ What getters and setters aren't useful for is this kind of stuff :
 ```
 class Foo{
   int _bar;
-  int get bar { return _bar; }
+  int get bar => _bar;
   set bar(int givenBar) { _bar = givenBar; }
 }
 ```
